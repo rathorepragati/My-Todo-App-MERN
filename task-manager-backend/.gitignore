@@ -9,16 +9,7 @@ npm-debug.log*
 # Environment variables
 .env
 
-# Build output
-dist/
-build/
 
-# Temporary files
-.DS_Store
-Thumbs.db
 
-# IDE/editor specific files
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
+
+

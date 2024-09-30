@@ -62,7 +62,8 @@ class TaskForm extends Component {
         }
         navigate("/");
       } catch (error) {
-        console.error("Error saving task", error);
+        console.log("Error saving task", error);
+        this.setState({ errors: { submit: "Error saving task" } });
       }
     }
   };
@@ -80,11 +81,14 @@ class TaskForm extends Component {
         <Typography variant="h5">
           {this.props.task ? "Edit Task" : "Create Task"}
         </Typography>
+        {errors.submit && (
+          <Typography color="error">{errors.submit}</Typography>
+        )}
         <form onSubmit={this.handleSubmit}>
           <TextField
             label="Title"
             name="title"
-            value={title}
+            value={title || ""}
             onChange={this.handleChange}
             error={!!errors.title}
             helperText={errors.title}
@@ -95,7 +99,7 @@ class TaskForm extends Component {
           <TextField
             label="Description"
             name="description"
-            value={description}
+            value={description || ""}
             onChange={this.handleChange}
             error={!!errors.description}
             helperText={errors.description}

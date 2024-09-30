@@ -22,8 +22,14 @@ class TaskList extends Component {
   }
 
   fetchTasks = async () => {
-    const { data } = await getTasks();
-    this.setState({ tasks: data });
+    try {
+      const response = await getTasks();
+      const data = response?.data || [];
+      this.setState({ tasks: data });
+    } catch (error) {
+      console.error("Failed to fetch tasks", error);
+      this.setState({ tasks: [] });
+    }
   };
 
   handleDelete = async (id) => {
